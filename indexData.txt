@@ -1,0 +1,47 @@
+Resume
+Ajinkya Naik
+Contact Info
+email,phone and linkedIN.
+About me
+As a Computer Science undergraduate student at Purdue University, I am fuelled by a fervent passion for programming and technology.
+My foundational knowledge encompasses Python, Java, and HTML, demonstrating my commitment to continuous learning. With an innate curiosity and drive, 
+I am poised to contribute to forward-thinking solutions and eagerly embrace opportunities for growth within the realm of innovation.
+Education
+    Purdue University           Aug 2022-present
+        Bachelor of Science, Computer Science
+    •	GPA: 3.93
+    •	Dean's & Semester Honor's List. (Fall 2022 & Spring 2023)
+    Abasaheb Garware College	Aug 2020- March 2022
+    High School Diploma
+Skills
+•	Java
+•	Data Structures
+•	Basic Understanding of MySQL
+•	Git and GitHub	•	Python
+•	Computer Architecture 
+•	Basic Understanding of Virtual Machine 
+•	Gradle	•	Html and CSS
+•	Communication
+•	Participated in Global Game Jam (2023).
+•	Basic knowledge of Cloud Computing
+
+Experience:
+Swachh Bharat Abhiyan – Volunteer	May 2019- Jun 2019
+Participated in Swachh Bharat Abhiyan in May 2019 as a Volunteer, actively contributing towards nationwide cleanliness campaign initiated by Indian Government
+Giri Premi Institute of Mountaineering (GGIM) – Volunteer	June 2018- Aug 2018 
+Led and organized multiple trekking expeditions with groups of students. 
+Collaborated with senior officials to coordinate and manage logistics for mountaineering programs and ensured smooth operations during training sessions and expeditions.
+
+Projects
+•	Tic Tac toe- Project: - Developed a tic tac toe project as an interactive and graphical implementation of the classic Tic Tac Toe game.
+ It is built using Java as the programming language, JavaFX for the graphical user interface (GUI), and Gradle as the build automation tool.
+•	Expense Management Project: - Developed Expense Management project designed to help individuals and manage their expenses efficiently.
+ It is built using Java for the core functionality, JavaFX for the graphical user interface (GUI), and MySQL as the database to securely store expense data.
+•	“Who wants to be millionaire” project: - A game similar to "who want to be a millionaire". Technologies used are Object oriented programming (OOP), Java and JavaFX for the GUI. 
+Data is stored via file handing and data persist in local file.
+
+Certifications
+Understanding Html and CSS
+Core Python for everyone
+
+

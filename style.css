@@ -1,0 +1,125 @@
+/* Reset default margin and padding for better consistency */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a background color and set font styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #aa2d2d;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+h2 {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+p {
+    margin: 10px 0;
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+}
+
+ul.navigation {
+    display: flex;
+    gap: 10px;
+}
+
+ul.navigation li {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+    /* Change the color as desired */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+dl {
+    margin: 10px 0;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 10px;
+}
+
+/* Style for sections with background color */
+section {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+/* Style for ordered and unordered lists in sections */
+section ul,
+section ol {
+    margin: 10px 0;
+}
+
+/* Style for education section list items */
+section ul li {
+    margin: 10px 0;
+}
+
+/* Style for experience section list items */
+section ol li {
+    margin: 10px 0;
+}
+
+/* Add styles for links within sections */
+section a {
+    color: #007BFF;
+    /* Change the color as desired */
+}
+
+/* Media query for responsive design */
+@media (max-width: 600px) {
+    main {
+        padding: 10px;
+    }
+}
