@@ -1,6 +1,9 @@
 import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+
+
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -18,6 +21,25 @@ const prisma = new PrismaClient({
 
 async function main() {
     console.log("🌱 Starting database seed...");
+    const passwordHash = await bcrypt.hash(
+        "28July@1975",
+        12
+    );
+
+    await prisma.user.upsert({
+        where: {
+            email: "ajinkya0210@gmail.com",
+        },
+        update: {
+            passwordHash,
+            role: "ADMIN",
+        },
+        create: {
+            email: "ajinkya0210@gmail.com",
+            passwordHash,
+            role: "ADMIN",
+        },
+    });
 
     await prisma.profile.upsert({
         where: {
