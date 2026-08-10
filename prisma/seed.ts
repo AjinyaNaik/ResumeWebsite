@@ -204,41 +204,41 @@ async function main() {
     }
 
     const technologies = [
-    "Java",
-    "Python",
-    "JavaScript",
-    "TypeScript",
-    "C",
-    "React",
-    "Node.js",
-    "Express",
-    "Next.js",
-    "Spring Boot",
-    "LangChain",
-    "PostgreSQL",
-    "MySQL",
-    "MongoDB",
-    "AWS",
-    "Docker",
-    "Kubernetes",
-    "Git",
-    "GitHub",
-    "CI/CD",
-    "OpenCV",
-    "Ollama",
-    "n8n",
-];
-for (const name of technologies) {
-    await prisma.technology.upsert({
-        where: {
-            name,
-        },
-        update: {},
-        create: {
-            name,
-        },
-    });
-}
+        "Java",
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "C",
+        "React",
+        "Node.js",
+        "Express",
+        "Next.js",
+        "Spring Boot",
+        "LangChain",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "Git",
+        "GitHub",
+        "CI/CD",
+        "OpenCV",
+        "Ollama",
+        "n8n",
+    ];
+    for (const name of technologies) {
+        await prisma.technology.upsert({
+            where: {
+                name,
+            },
+            update: {},
+            create: {
+                name,
+            },
+        });
+    }
 
     const projects = [
         {
@@ -346,6 +346,52 @@ for (const name of technologies) {
         }
     }
 
+    const education = [
+        {
+            institution: "Purdue University Fort Wayne",
+            degree: "Bachelor of Science",
+            field: "Computer Science and Mathematics",
+            location: "Fort Wayne, Indiana",
+            startDate: new Date("2022-08-01"),
+            endDate: new Date("2026-05-01"),
+            description: "GPA: 3.78/4.0",
+            displayOrder: 1,
+            isVisible: true,
+        },
+        {
+            institution: "University of Illinois Urbana-Champaign",
+            degree: "Master of Science",
+            field: "Bioinformatics — CS Concentration",
+            location: "Urbana-Champaign, Illinois",
+            startDate: new Date("2026-08-01"),
+            endDate: new Date("2028-05-01"),
+            description: null,
+            displayOrder: 2,
+            isVisible: true,
+        },
+    ];
+
+    for (const item of education) {
+        const existing = await prisma.education.findFirst({
+            where: {
+                institution: item.institution,
+                degree: item.degree,
+            },
+        });
+
+        if (existing) {
+            await prisma.education.update({
+                where: {
+                    id: existing.id,
+                },
+                data: item,
+            });
+        } else {
+            await prisma.education.create({
+                data: item,
+            });
+        }
+    }
     console.log("✅ Database seeded successfully.");
 }
 
