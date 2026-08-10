@@ -1,0 +1,239 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  ADMIN
+}
+
+enum MessageStatus {
+  UNREAD
+  READ
+  ARCHIVED
+}
+
+enum NotificationType {
+  CONTACT_MESSAGE
+  SYSTEM
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         UserRole @default(ADMIN)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  notifications Notification[]
+
+  @@map("users")
+}
+
+model Profile {
+  id           Int     @id @default(autoincrement())
+  name         String
+  headline     String?
+  bio          String?
+  location     String?
+  profileImage String? @map("profile_image")
+  resumeUrl    String? @map("resume_url")
+  email        String?
+  githubUrl    String? @map("github_url")
+  linkedinUrl  String? @map("linkedin_url")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("profile")
+}
+
+model Experience {
+  id          Int                @id @default(autoincrement())
+  company     String
+  position    String
+  location    String?
+  startDate   DateTime           @map("start_date")
+  endDate     DateTime?          @map("end_date")
+  bullets     ExperienceBullet[]
+  companyLogo String?            @map("company_logo")
+
+  displayOrder Int     @default(0) @map("display_order")
+  isVisible    Boolean @default(true) @map("is_visible")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  technologies ExperienceTechnology[]
+
+  @@map("experiences")
+}
+
+model ExperienceBullet {
+  id           Int    @id @default(autoincrement())
+  experienceId Int    @map("experience_id")
+  content      String
+  displayOrder Int    @default(0) @map("display_order")
+
+  experience Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([experienceId, displayOrder])
+  @@map("experience_bullets")
+}
+
+model Technology {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  category String?
+  icon     String?
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  experienceTechnologies ExperienceTechnology[]
+  projectTechnologies    ProjectTechnology[]
+
+  @@map("technologies")
+}
+
+model ExperienceTechnology {
+  experienceId Int @map("experience_id")
+  technologyId Int @map("technology_id")
+
+  experience Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  technology Technology @relation(fields: [technologyId], references: [id], onDelete: Cascade)
+
+  @@id([experienceId, technologyId])
+  @@map("experience_technologies")
+}
+
+model Skill {
+  id          Int     @id @default(autoincrement())
+  name        String
+  category    String
+  icon        String?
+  proficiency Int?
+
+  displayOrder Int     @default(0) @map("display_order")
+  isVisible    Boolean @default(true) @map("is_visible")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([name, category])
+  @@map("skills")
+}
+
+model Education {
+  id          Int       @id @default(autoincrement())
+  institution String
+  degree      String
+  field       String?
+  location    String?
+  startDate   DateTime  @map("start_date")
+  endDate     DateTime? @map("end_date")
+  description String?
+  logo        String?
+
+  displayOrder Int     @default(0) @map("display_order")
+  isVisible    Boolean @default(true) @map("is_visible")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("education")
+}
+
+model Project {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  image       String?
+  githubUrl   String? @map("github_url")
+  liveUrl     String? @map("live_url")
+
+  displayOrder Int     @default(0) @map("display_order")
+  isFeatured   Boolean @default(false) @map("is_featured")
+  isVisible    Boolean @default(true) @map("is_visible")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  technologies ProjectTechnology[]
+
+  @@map("projects")
+}
+
+model ProjectTechnology {
+  projectId    Int @map("project_id")
+  technologyId Int @map("technology_id")
+
+  project    Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  technology Technology @relation(fields: [technologyId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, technologyId])
+  @@map("project_technologies")
+}
+
+model Achievement {
+  id           Int       @id @default(autoincrement())
+  title        String
+  description  String?
+  organization String?
+  date         DateTime?
+  url          String?
+  image        String?
+
+  displayOrder Int     @default(0) @map("display_order")
+  isVisible    Boolean @default(true) @map("is_visible")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("achievements")
+}
+
+model Message {
+  id      Int     @id @default(autoincrement())
+  name    String
+  email   String
+  subject String?
+  message String
+
+  status MessageStatus @default(UNREAD)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  notifications Notification[]
+
+  @@map("messages")
+}
+
+model Notification {
+  id      Int              @id @default(autoincrement())
+  type    NotificationType
+  title   String
+  message String
+  isRead  Boolean          @default(false) @map("is_read")
+
+  userId    Int? @map("user_id")
+  messageId Int? @map("message_id")
+
+  user    User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contact Message? @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId, isRead])
+  @@index([messageId])
+  @@map("notifications")
+}
