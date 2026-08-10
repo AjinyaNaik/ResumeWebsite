@@ -154,7 +154,7 @@ model Education {
 
 model Project {
   id          Int     @id @default(autoincrement())
-  title       String
+  title       String @unique
   description String?
   image       String?
   githubUrl   String? @map("github_url")
