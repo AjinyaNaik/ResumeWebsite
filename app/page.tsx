@@ -6,6 +6,7 @@ import Skills from "@/components/sections/Skill";
 import Projects from "@/components/sections/Projects";
 import Education from "@/components/sections/Education";
 import Achievements from "@/components/sections/Achievements";
+import Contact from "@/components/sections/Contact";
 import { getAchievements } from "@/lib/achievements";
 import { getEducation } from "@/lib/education";
 import { getProjects } from "@/lib/projects";
@@ -77,6 +78,7 @@ export default async function Home() {
 
         <section id="contact" className="min-h-screen">
           {/* Contact - coming next */}
+          <Contact />
         </section>
       </main>
     </>

@@ -63,3 +63,25 @@ export async function deleteMessage(id: number) {
     where: { id },
   });
 }
+
+export async function getUnreadMessageCount() {
+    return prisma.message.count({
+        where: {
+            status: "UNREAD",
+        },
+    });
+}
+
+export async function updateMessageStatus(
+    id: number,
+    status: "UNREAD" | "READ" | "ARCHIVED"
+) {
+    return prisma.message.update({
+        where: {
+            id,
+        },
+        data: {
+            status,
+        },
+    });
+}
