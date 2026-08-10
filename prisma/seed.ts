@@ -392,6 +392,39 @@ async function main() {
             });
         }
     }
+
+    const achievements = [
+        {
+            title: "Purdue Fort Wayne Research Symposium",
+            description:
+                "Presented research on effective data visualization techniques, examining how graph selection affects data interpretation and identifying visualization anti-patterns.",
+            organization: "Purdue University Fort Wayne",
+            date: new Date("2025-05-01"),
+            displayOrder: 1,
+            isVisible: true,
+        },
+    ];
+
+    for (const achievement of achievements) {
+        const existing = await prisma.achievement.findFirst({
+            where: {
+                title: achievement.title,
+            },
+        });
+
+        if (existing) {
+            await prisma.achievement.update({
+                where: {
+                    id: existing.id,
+                },
+                data: achievement,
+            });
+        } else {
+            await prisma.achievement.create({
+                data: achievement,
+            });
+        }
+    }
     console.log("✅ Database seeded successfully.");
 }
 
