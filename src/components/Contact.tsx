@@ -131,7 +131,7 @@ export default function Contact() {
 
               <div className="flex gap-3">
                 <a
-                  href="https://github.com/"
+                  href="https://github.com/AjinyaNaik"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -141,7 +141,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="https://linkedin.com/"
+                  href="https://www.linkedin.com/in/ajinkyanaik02/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -167,7 +167,7 @@ export default function Contact() {
               </p>
 
               <p className="mt-2 font-mono text-sm text-stone-400">
-                Fill out the form below.
+                Looking forward to connect!
               </p>
             </div>
 

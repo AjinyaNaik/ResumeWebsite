@@ -1,10 +1,10 @@
 const links = [
   {
-    label: "github",
+    label: "Github",
     href: "https://github.com/AjinyaNaik",
   },
   {
-    label: "linkedin",
+    label: "Linkedin",
     href: "https://www.linkedin.com/in/ajinkyanaik02/",
   },
 ];
@@ -17,7 +17,7 @@ export default function SocialLinks() {
         download
         className="border border-amber-500 bg-amber-400 px-7 py-4 font-mono text-sm font-bold text-black transition hover:bg-amber-300"
       >
-        download resume.pdf
+        Download Resume
       </a>
 
       {links.map((link) => (
