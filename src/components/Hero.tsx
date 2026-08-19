@@ -37,7 +37,7 @@ building scalable AI-driven solutions and optimizing system performance
             <div className="absolute -bottom-3 -right-3 h-full w-full border border-amber-400/10" />
 
             <Image
-              src="/Ajinkya_Naik.jpeg"
+              src="/Ajinkya_Naik.png"
               alt="Ajinkya Naik"
               width={500}
               height={600}
