@@ -2,7 +2,7 @@
 
 export default function Navbar() {
   const links = [
-    { name: "stack", href: "#stack" },
+    { name: "stack", href: "#skills" },
     { name: "work", href: "#work" },
     { name: "projects", href: "#projects" },
     { name: "contact", href: "#contact" },

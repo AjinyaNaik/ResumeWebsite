@@ -174,7 +174,7 @@ export default function Skills() {
                       className="group/skill flex cursor-default items-center gap-3 border border-amber-500/10 bg-[#0b0a08] px-4 py-3 transition-colors duration-200 hover:border-amber-400/40 hover:bg-amber-400/[0.03]"
                     >
                       <Icon
-                        className="h-5 w-5 text-stone-500 transition-colors duration-200 group-hover/skill:text-amber-400"
+                        className="h-5 w-5 text-amber-400 transition-all duration-200 group-hover/skill:text-amber-300 group-hover/skill:drop-shadow-[0_0_6px_rgba(251,191,36,0.5)]"
                         aria-hidden="true"
                       />
 
