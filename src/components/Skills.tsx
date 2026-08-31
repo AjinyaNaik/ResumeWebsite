@@ -94,7 +94,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="border-t border-amber-500/10 px-6 py-28 md:px-14"
+      className="relative border-t border-amber-500/10 px-6 py-28 md:px-14"
     >
       <div className="mx-auto max-w-[1400px]">
         {/* Section heading */}
@@ -113,7 +113,7 @@ export default function Skills() {
             Skills
           </h2>
 
-          <p className="mt-5 max-w-2xl font-mono text-sm leading-7 text-stone-500">
+          <p className="mt-5 max-w-2xl font-mono text-sm leading-7 text-stone-400">
             Technologies and tools I use to build full-stack applications,
             distributed systems, and AI-powered software.
           </p>
@@ -131,7 +131,8 @@ export default function Skills() {
                 duration: 0.5,
                 delay: categoryIndex * 0.08,
               }}
-              className="group border border-amber-500/10 bg-[#0e0d0a] p-7 transition-colors duration-300 hover:border-amber-400/30 md:p-8"
+              whileHover={{ y: -4 }}
+              className="group border border-amber-500/10 bg-[#0e0d0a]/80 p-7 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/40 hover:shadow-[0_0_30px_rgba(245,158,11,0.06)] md:p-8"
             >
               {/* Category title */}
               <div className="mb-7 flex items-center gap-3">
@@ -165,16 +166,16 @@ export default function Skills() {
                         duration: 0.3,
                         delay:
                           categoryIndex * 0.08 +
-                          skillIndex * 0.04,
+                          skillIndex * 0.03,
                       }}
                       whileHover={{
-                        y: -4,
-                        scale: 1.03,
+                        y: -3,
+                        scale: 1.04,
                       }}
-                      className="group/skill flex cursor-default items-center gap-3 border border-amber-500/10 bg-[#0b0a08] px-4 py-3 transition-colors duration-200 hover:border-amber-400/40 hover:bg-amber-400/[0.03]"
+                      className="group/skill flex cursor-default items-center gap-3 border border-amber-500/15 bg-[#0b0a08] px-4 py-3 transition-all duration-200 hover:border-amber-400/50 hover:bg-amber-400/[0.05] hover:shadow-[0_0_12px_rgba(245,158,11,0.15)]"
                     >
                       <Icon
-                        className="h-5 w-5 text-amber-400 transition-all duration-200 group-hover/skill:text-amber-300 group-hover/skill:drop-shadow-[0_0_6px_rgba(251,191,36,0.5)]"
+                        className="h-5 w-5 text-amber-400 transition-all duration-200 group-hover/skill:text-amber-300 group-hover/skill:drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]"
                         aria-hidden="true"
                       />
 
@@ -194,14 +195,12 @@ export default function Skills() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="mt-8 border border-amber-500/10 bg-[#0b0a08] px-5 py-4 font-mono text-xs text-stone-600"
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mt-8 border border-amber-500/10 bg-[#0b0a08]/80 px-5 py-4 font-mono text-xs text-stone-500 backdrop-blur-sm"
         >
           <span className="text-amber-400">$</span>{" "}
           echo &quot;always learning...&quot;
-          <span className="ml-2 animate-pulse text-amber-400">
-            _
-          </span>
+          <span className="ml-2 inline-block h-3.5 w-1.5 animate-pulse bg-amber-400 align-middle shadow-[0_0_6px_rgba(251,191,36,0.8)]" />
         </motion.div>
       </div>
     </section>

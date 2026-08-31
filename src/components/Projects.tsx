@@ -1,11 +1,14 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface Project {
   name: string;
   subtitle: string;
   period: string;
   description: string;
-  highlights: string[]; 
+  highlights: string[];
   technologies: string[];
   demo?: string;
   image?: string;
@@ -24,13 +27,7 @@ const projects: Project[] = [
       "Designing personalized retirement planning workflows that combine user information with retrieved financial knowledge.",
       "Developed as an ongoing Senior Capstone project.",
     ],
-    technologies: [
-      "LangChain",
-      "RAG",
-      "LLMs",
-      "Python",
-      "Qdrant",
-    ],
+    technologies: ["LangChain", "RAG", "LLMs", "Python", "Qdrant"],
     demo: "https://youtu.be/dwH7Bzj2ePc?si=V77qL4gjkzW-hBLT",
   },
   {
@@ -87,11 +84,7 @@ const projects: Project[] = [
       "Identified risks associated with misleading visualizations and proposed practical selection guidelines.",
       "Presented findings at the Purdue Fort Wayne Research Symposium.",
     ],
-    technologies: [
-      "Data Visualization",
-      "Research",
-      "Data Analysis",
-    ],
+    technologies: ["Data Visualization", "Research", "Data Analysis"],
   },
 ];
 
@@ -99,11 +92,17 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="border-t border-amber-500/10 px-6 py-28 md:px-14"
+      className="relative border-t border-amber-500/10 px-6 py-28 md:px-14"
     >
       <div className="mx-auto max-w-[1400px]">
         {/* Heading */}
-        <div className="mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
+        >
           <p className="mb-3 font-mono text-sm font-semibold text-amber-400">
             $ ls ./projects
           </p>
@@ -111,41 +110,51 @@ export default function Projects() {
           <h2 className="font-sans text-5xl font-black tracking-tight text-stone-100 md:text-7xl">
             Projects
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Projects */}
+        {/* Projects Grid */}
         <div className="grid gap-8 lg:grid-cols-2">
-          {projects.map((project) => (
-            <article
+          {projects.map((project, index) => (
+            <motion.article
               key={project.name}
-              className="group relative flex flex-col overflow-hidden border border-amber-500/10 bg-[#0e0d0a] transition duration-300 hover:-translate-y-1 hover:border-amber-400/40"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -6 }}
+              className="group relative flex flex-col overflow-hidden border border-amber-500/10 bg-[#0e0d0a]/90 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/40 hover:shadow-[0_12px_40px_rgba(0,0,0,0.6),0_0_20px_rgba(245,158,11,0.08)]"
             >
-              {/* Project Image */}
-             {project.image && (
-  <div className="relative w-full overflow-hidden border-b border-amber-500/10 bg-[#0b0a08]">
-    <Image
-      src={project.image}
-      alt={`${project.name} project`}
-      width={1600}
-      height={900}
-      className="h-auto w-full object-contain transition duration-500 group-hover:scale-[1.02]"
-    />
+              {/* Subtle top corner decoration */}
+              <div className="absolute top-0 right-0 h-10 w-10 overflow-hidden pointer-events-none">
+                <div className="absolute transform rotate-45 bg-amber-400/10 text-center text-xs py-1 right-[-35px] top-[18px] w-[120px]" />
+              </div>
 
-    {/* Subtle overlay */}
-    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0e0d0a]/40 via-transparent to-transparent" />
-  </div>
-)}
+              {/* Project Image */}
+              {project.image && (
+                <div className="relative w-full overflow-hidden border-b border-amber-500/10 bg-[#0b0a08]">
+                  <Image
+                    src={project.image}
+                    alt={`${project.name} project`}
+                    width={1600}
+                    height={900}
+                    className="h-auto w-full object-contain transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  {/* Gradient overlay */}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0e0d0a] via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-30" />
+                </div>
+              )}
 
               {/* Content */}
               <div className="flex flex-1 flex-col p-8">
                 {/* Top */}
                 <div className="flex items-start justify-between gap-6">
                   <div>
-                    <p className="font-mono text-xs text-amber-400">
+                    <p className="font-mono text-xs font-semibold text-amber-400">
                       {project.period}
                     </p>
 
-                    <h3 className="mt-2 text-3xl font-black text-stone-100">
+                    <h3 className="mt-2 text-3xl font-black text-stone-100 transition-colors duration-200 group-hover:text-amber-300">
                       {project.name}
                     </h3>
 
@@ -154,7 +163,7 @@ export default function Projects() {
                     </p>
                   </div>
 
-                  <span className="font-mono text-2xl text-amber-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                  <span className="font-mono text-2xl text-amber-400 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-amber-300 group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                     ↗
                   </span>
                 </div>
@@ -182,29 +191,31 @@ export default function Projects() {
                   {project.technologies.map((technology) => (
                     <span
                       key={technology}
-                      className="border border-amber-500/10 px-3 py-1 font-mono text-xs text-amber-400/70"
+                      className="border border-amber-500/15 bg-amber-400/[0.02] px-3 py-1 font-mono text-xs text-amber-400/80 transition-all duration-200 hover:border-amber-400/50 hover:bg-amber-400/[0.08] hover:text-amber-300 hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]"
                     >
                       {technology}
                     </span>
                   ))}
                 </div>
 
-                {/* Demo */}
+                {/* Demo Button */}
                 {project.demo && (
                   <div className="mt-8">
                     <a
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 border border-amber-400/30 px-5 py-3 font-mono text-sm font-semibold text-amber-400 transition hover:border-amber-400 hover:bg-amber-400 hover:text-black"
+                      className="group/btn inline-flex items-center gap-2 border border-amber-400/40 bg-amber-400/5 px-5 py-3 font-mono text-sm font-semibold text-amber-400 transition-all duration-300 hover:border-amber-400 hover:bg-amber-400 hover:text-black hover:shadow-[0_0_20px_rgba(251,191,36,0.3)]"
                     >
-                      watch demo
-                      <span>→</span>
+                      <span>watch demo</span>
+                      <span className="transition-transform duration-200 group-hover/btn:translate-x-1">
+                        →
+                      </span>
                     </a>
                   </div>
                 )}
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>
